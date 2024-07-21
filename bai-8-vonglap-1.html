@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game đoán số</title>
+</head>
+<body>
+<h1 style="color:brown;">Hãy đoán xem</h1>
+<button style="width:130px; height:30px" onclick="doanso()"> Bắt đầu</button>
+<script>
+    function doanso() {
+        let min = +prompt("Nhập vào số nhỏ nhất trong khoảng:");
+        let max = +prompt("Nhập vào số lớn nhất trong khoảng:");
+        if (min >= max) {
+            alert('Khoảng không hợp lệ. Vui lòng nhập lại.');
+            return;
+        }
+        let random_num = Math.floor(Math.random() * (max - min + 1)) + min;
+        let guess;
+        let count = 0;
+        do {
+            guess = +prompt("Nhập vào số bạn đoán trong khoảng từ " + min + " đến " + max + ":");
+            count++;
+            if (count === 4) {
+                alert("Bạn hết số lần đoán")
+                break;
+            } else if (guess > random_num) {
+                alert('Số bạn đoán lớn hơn số ngẫu nhiên. Thử lại!');
+            } else if (guess < random_num) {
+                alert('Số bạn đoán nhỏ hơn số ngẫu nhiên. Thử lại!');
+            } else {
+                alert("Chúc mừng! Bạn đã đoán đúng sau " + count + " lần thử.");
+            }
+        } while (guess !== random_num);
+    }
+
+</script>
+</body>
+</html>
